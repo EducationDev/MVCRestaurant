@@ -1,26 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MVCRestaurant.Data.Models;
+using MVCRestaurant.Data.Services;
 
 namespace MVCRestaurant.Site.Controllers
 {
+    /// <summary>
+    /// Estímulo externo
+    /// </summary>
     public class HomeController : Controller
     {
-        //Estímulo externo
+        private readonly IRestaurantData _db;
+        public HomeController()
+        {
+            _db = new InMemoryRestaurantData();
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
             // build
-            var model = "MVCRestaurant.Data.Models.Restaurant";
-
-            ViewBag.Message = model;
-
+            var model = _db.GetAll();
+            
             // render
+            return View(model); // => HTML
+            
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
             return View();
         }
 
-        
+        [HttpPost]
+        public ActionResult Create(Restaurant model)
+        {
+            return View();
+        }
+
+
     }
 }
