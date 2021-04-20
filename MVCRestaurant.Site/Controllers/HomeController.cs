@@ -10,9 +10,9 @@ namespace MVCRestaurant.Site.Controllers
     public class HomeController : Controller
     {
         private readonly IRestaurantData _db;
-        public HomeController()
+        public HomeController(IRestaurantData restaurantData)
         {
-            _db = new InMemoryRestaurantData();
+            _db = restaurantData;
         }
 
         [HttpGet]

@@ -13,6 +13,7 @@ namespace MVCRestaurant.Site
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ContainerConfig.RegisterContainer();
         }
     }
 }
